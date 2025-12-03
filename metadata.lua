@@ -4,8 +4,8 @@
 
 PLUGIN = { -- luacheck: ignore
     name = "shader-slang",
-    version = "0.1.0",
-    description = "A mise tool plugin for shader-slang",
+    version = "1.0.0",
+    description = "A mise/vfox tool plugin for shader-slang",
     author = "horaguy",
-    updateUrl = "https://github.com/horaguy/mise-shader-slang",
+    updateUrl = "https://github.com/horaguy/vfox-shader-slang",
 }
