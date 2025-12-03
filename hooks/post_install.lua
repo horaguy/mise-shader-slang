@@ -12,8 +12,28 @@ function PLUGIN:PostInstall(ctx)
     local path = sdkInfo.path
     -- local version = sdkInfo.version
 
-    local success, exitType, exitCode = os.execute(path .. "/bin/slangc -v")
-    if not success or exitCode ~= 0 then
+    -- Build executable path based on platform
+    local pathSeparator = "/"
+    local executableName = "slangc"
+    if RUNTIME.osType == "Windows" then
+        pathSeparator = "\\"
+        executableName = "slangc.exe"
+    end
+
+    local executablePath = path .. pathSeparator .. "bin" .. pathSeparator .. executableName
+    local success, exitType, exitCode = os.execute(executablePath .. " -v")
+
+    print('success: ' .. success)
+    print('exitType: ' .. exitType)
+    print('exitCode: ' .. exitCode)
+
+    -- Handle different return value formats across platforms
+    -- On Windows, exitCode might be nil, so check success first
+    if not success then
+        error("shader-slang installation appears to be broken")
+    end
+    -- On Unix-like systems, check exitCode if available
+    if exitCode ~= nil and exitCode ~= 0 then
         error("shader-slang installation appears to be broken")
     end
 end
