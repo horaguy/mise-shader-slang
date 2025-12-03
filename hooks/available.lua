@@ -23,10 +23,11 @@ function PLUGIN:Available(ctx)
     local result = {}
 
     for _, tag_info in ipairs(tags) do
-        -- Only accept versions matching vYYYY.MM.DD format (e.g., v2025.13.1)
-        -- Exclude formats like vulkan-sdk-1.4.321.0 or v2024.10.1-draft
-        if tag_info.tag_name:match("^v%d+%.%d+%.%d+$") then
-            local version = tag_info.tag_name:gsub("^v", "")
+        -- Accept versions starting with digits or v followed by digits (e.g., 2025.13.1, v2025.13.1, v2025.23, v2024.10.1-draft)
+        -- Exclude formats like vulkan-sdk-1.4.321.0
+        local tag_name = tag_info.tag_name
+        if tag_name:match("^(%d+|v%d+)") then
+            local version = tag_name:gsub("^v", "")
             local is_prerelease = tag_info.prerelease or false
             local note = is_prerelease and "pre-release" or nil
 
