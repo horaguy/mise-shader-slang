@@ -23,14 +23,3 @@ run = [
     "mise cache clear",
     "mise install shader-slang",
 ]
-
-[tasks.ci]
-description = "Run all CI checks"
-run = '''
-if [ "$OS" = "Windows_NT" ]; then
-  mise run test
-else
-  mise run lint
-  mise run test
-fi
-'''
