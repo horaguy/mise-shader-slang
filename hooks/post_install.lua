@@ -23,18 +23,6 @@ function PLUGIN:PostInstall(ctx)
     local executablePath = path .. pathSeparator .. "bin" .. pathSeparator .. executableName
     local success, exitType, exitCode = os.execute(executablePath .. " -v")
 
-    print('success: ' .. success)
-    if exitType ~= nil then
-        print('exitType: ' .. exitType)
-    else
-        print('exitType: nil')
-    end
-    if exitCode ~= nil then
-        print('exitCode: ' .. exitCode)
-    else
-        print('exitCode: nil')
-    end
-
     -- Handle different return value formats across platforms
     -- On Windows, exitCode might be nil, so check success first
     if not success then
