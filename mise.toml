@@ -24,7 +24,7 @@ run = [
     "mise install shader-slang",
 ]
 
-# Currently, 'hk' (used in "lint" task) is not available on Windows yet. So we call tasks separately in CI.
+# After 'hk' (used in "lint" task) is supported on Windows PowerShell, use 'ci' task instead of 'lint' and 'test' tasks in CI.
 # See https://github.com/jdx/hk/pull/260
 # [tasks.ci]
 # description = "Run CI checks"

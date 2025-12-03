@@ -18,7 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
-      # 'hk' (used in "lint" task) is not available on Windows yet. See https://github.com/jdx/hk/pull/260
+      # The 'hk' command used in the "lint" task is not currently supported on Windows PowerShell.
+      # See https://github.com/jdx/hk/pull/260
       - if: matrix.os != 'windows-latest'
         run: mise run lint
       - run: mise run test
