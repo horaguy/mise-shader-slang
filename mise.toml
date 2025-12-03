@@ -1,12 +1,12 @@
 [env]
 MISE_USE_VERSIONS_HOST = "0"
 
-# [tools]
-# actionlint = "latest"
-# hk = "latest"
-# lua = "5.4"
-# pkl = "latest"
-# stylua = "latest"
+[tools]
+actionlint = "latest"
+hk = "latest"
+# lua = "5.4" # Not available on Windows
+pkl = "latest"
+stylua = "latest"
 
 [tasks.format]
 description = "Format Lua scripts"
@@ -16,7 +16,19 @@ run = "stylua metadata.lua hooks/"
 description = "Lint Lua scripts and GitHub Actions using hk"
 run = "hk check"
 
+[tasks.test]
+description = "Run plugin tests - install and execute tool"
+run = [
+    "mise plugin link --force shader-slang .",
+    "mise cache clear",
+    "mise install shader-slang",
+    "mise exec \"shader-slang\" -- \"slangc\" -v",
+]
+
 [tasks.ci]
 description = "Run all CI checks"
-depends = ["test"]
-# depends = ["lint", "test"]
+depends = ["lint", "test"]
+
+[tasks.ci-windows]
+description = "Run CI checks on Windows"
+depends = ["lint", "test"]
