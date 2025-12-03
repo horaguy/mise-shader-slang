@@ -18,7 +18,7 @@ slangc -v
 
 ## Usage
 
-See [User's Guide](https://shader-slang.org/slang/user-guide/)
+See [Slang User's Guide](https://shader-slang.org/slang/user-guide/)
 
 ```shell
 # Compile *.slang to *.metal
