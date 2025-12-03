@@ -2,6 +2,8 @@
 #MISE description="Run plugin tests - install and execute tool"
 set -euo pipefail
 
+echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+
 mise plugin link --force shader-slang .
 mise cache clear
 mise install shader-slang
