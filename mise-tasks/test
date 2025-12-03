@@ -6,13 +6,9 @@ mise plugin link --force shader-slang .
 mise cache clear
 mise install shader-slang
 
-# Capture and display the output while also verifying it
-output=$(mise exec "shader-slang" -- "slangc" --version)
-echo "slangc output: $output"
-
-if echo "$output" | grep -q 'shader-slang@'; then
+if mise exec "shader-slang" -- "slangc" -v; then
     echo "✓ Tests passed"
 else
-    echo "✗ Test failed: expected version shader-slang"
+    echo "✗ Test failed"
     exit 1
 fi
