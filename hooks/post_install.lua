@@ -17,7 +17,6 @@ function PLUGIN:PostInstall(ctx)
     local executableName = "slangc"
     if RUNTIME.osType == "Windows" then
         pathSeparator = "\\"
-        -- executableName = "slangc.exe"
     end
 
     local executablePath = path .. pathSeparator .. "bin" .. pathSeparator .. executableName
